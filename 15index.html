@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="下田佳恋の自己紹介ページ" />
+    <meta name="theme-color" content="#2ec5ce" />
+    <title>下田佳恋 | 自己紹介</title>
+    <style>
+      :root {
+        --bg: #f7fbfd;
+        --fg: #0f172a;
+        --muted: #475569;
+        --brand: #2ec5ce; /* 爽やかなシアン系 */
+        --brand-2: #4fc3f7; /* 補助のスカイブルー */
+        --card: #ffffff;
+        --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        --radius: 16px;
+      }
+
+      /* ベース */
+      html, body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans JP, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--fg);
+        background:
+          radial-gradient(1200px 600px at 10% -10%, rgba(79, 195, 247, 0.18), transparent 60%),
+          radial-gradient(1000px 500px at 90% -20%, rgba(46, 197, 206, 0.16), transparent 60%),
+          var(--bg);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* ゆっくり背景が動くグラデーションのアクセント（控えめ） */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -20vh -20vw;
+        background: radial-gradient(60vw 60vh at 70% 20%, rgba(46, 197, 206, 0.06), transparent 60%),
+                    radial-gradient(70vw 70vh at 20% 0%, rgba(79, 195, 247, 0.06), transparent 60%);
+        filter: blur(20px);
+        z-index: -1;
+        animation: drift 30s linear infinite alternate;
+      }
+      @keyframes drift {
+        from { transform: translate3d(0, 0, 0) scale(1); }
+        to   { transform: translate3d(2vw, 1vh, 0) scale(1.02); }
+      }
+
+      header {
+        padding: clamp(40px, 6vw, 80px) 20px 10px;
+        text-align: center;
+      }
+
+      .title {
+        font-size: clamp(28px, 5vw, 44px);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        margin: 0 0 8px;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: clamp(14px, 2.2vw, 16px);
+        margin: 0 auto;
+        max-width: 60ch;
+      }
+
+      .accent {
+        width: 120px;
+        height: 4px;
+        margin: 18px auto 0;
+        background: linear-gradient(90deg, var(--brand), var(--brand-2));
+        border-radius: 999px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(46, 197, 206, 0.25);
+      }
+      .accent::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent);
+        transform: translateX(-100%);
+        animation: shine 3.2s ease-in-out infinite;
+      }
+      @keyframes shine {
+        0%   { transform: translateX(-100%); }
+        60%  { transform: translateX(100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px clamp(20px, 5vw, 40px) 80px;
+      }
+
+      .intro {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: clamp(20px, 5vw, 40px);
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 18px;
+        align-items: center;
+        margin-block: 24px 36px;
+      }
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        box-shadow: 0 10px 20px rgba(46, 197, 206, 0.25);
+        user-select: none;
+      }
+      .intro h2 {
+        margin: 0 0 6px;
+        font-size: clamp(18px, 3.5vw, 22px);
+      }
+      .intro p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(16px, 2.8vw, 24px);
+      }
+      @media (max-width: 720px) {
+        .intro { grid-template-columns: 56px 1fr; }
+        .avatar { width: 56px; height: 56px; font-size: 12px; }
+        .grid { grid-template-columns: 1fr; }
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: clamp(18px, 3.2vw, 28px);
+        position: relative;
+        overflow: clip;
+        transition: transform .35s ease, box-shadow .35s ease;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+      }
+      .card h3 {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 10px;
+        font-size: clamp(18px, 3vw, 20px);
+      }
+      .card h3 .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        font-size: 12px;
+        line-height: 1;
+        border-radius: 999px;
+        background: rgba(46, 197, 206, 0.12);
+        color: #0b6b70;
+        border: 1px solid rgba(46,197,206,0.25);
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      /* スクロールでふわっと表示 */
+      .reveal { opacity: 0; transform: translateY(12px); }
+      .reveal.in-view { opacity: 1; transform: none; }
+      .reveal, .reveal * { transition: opacity .6s ease, transform .6s ease; }
+
+      /* メディア: 動きを減らす設定に配慮 */
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+        .reveal { opacity: 1 !important; transform: none !important; }
+      }
+
+      footer {
+        text-align: center;
+        color: #64748b;
+        font-size: 12px;
+        padding: 28px 16px 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="title" aria-describedby="lead">自己紹介</h1>
+      <p id="lead" class="subtitle">爽やかでシンプル、でも少しだけ動きのあるページへようこそ。</p>
+      <div class="accent" aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <section class="intro reveal" aria-label="プロフィール">
+        <div class="avatar" aria-hidden="true">KL</div>
+        <div>
+          <h2>氏名：下田佳恋</h2>
+          <p>「チームに心地よい風を」をモットーに、丁寧で前向きな開発を大切にしています。</p>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="自己紹介の詳細">
+        <article class="card reveal" aria-labelledby="skill-title">
+          <h3 id="skill-title">
+            特技
+            <span class="badge">Skill</span>
+          </h3>
+          <p>どこでも寝れる — 短時間でリフレッシュして、いつでも最高のパフォーマンスを発揮します。</p>
+        </article>
+
+        <article class="card reveal" aria-labelledby="spirit-title">
+          <h3 id="spirit-title">
+            チーム開発への意気込み
+            <span class="badge">Teamwork</span>
+          </h3>
+          <p>チーム全員で協力してアプリ開発をすることを第一に、コミュニケーションと信頼を大切に進めます。</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="y"></span> Karen Shimoda
+    </footer>
+
+    <script>
+      // 年表示
+      document.getElementById('y').textContent = new Date().getFullYear();
+
+      // IntersectionObserver でふわっと表示
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries, obs) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        }
+      }, { threshold: 0.15 });
+      els.forEach((el) => io.observe(el));
+    </script>
+  </body>
+  </html>
