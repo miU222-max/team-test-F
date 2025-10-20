@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>﨑村壱花 — 自己紹介</title>
+    <meta name="description" content="﨑村壱花の自己紹介ページ。特技やチーム開発に対する意気込みを紹介します。" />
+    <style>
+      /* ベース */
+      :root{
+        --bg:#fff;
+        --fg:#111;
+        --muted:#666;
+        --accent:#000;
+        --max-width:900px;
+        --gap:48px;
+      }
+      html,body{height:100%;}
+      body{
+        margin:0;
+        font-family: Inter, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background:var(--bg);
+        color:var(--fg);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:40px;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+      }
+
+      .card{
+        width:100%;
+        max-width:var(--max-width);
+        padding:64px;
+        box-sizing:border-box;
+        background:transparent;
+      }
+
+      /* 大きな余白とシンプルなレイアウト */
+      header{
+        margin-bottom:var(--gap);
+      }
+
+      .name{
+        font-size:clamp(28px,5vw,56px);
+        line-height:1.05;
+        font-weight:700;
+        color:var(--accent);
+        margin:0 0 12px 0;
+        white-space:nowrap;
+        overflow:hidden;
+        border-right:2px solid var(--accent);
+        width:fit-content;
+      }
+
+      .role{
+        margin:0;
+        color:var(--muted);
+        font-size:16px;
+      }
+
+      main{
+        display:grid;
+        grid-template-columns:1fr 320px;
+        gap:48px;
+        align-items:start;
+      }
+
+      .bio{
+        font-size:18px;
+        line-height:1.9;
+        color:var(--fg);
+      }
+
+      .cardbox{
+        border-left:1px solid #eee;
+        padding-left:40px;
+      }
+
+      .item{
+        margin-bottom:28px;
+      }
+
+      .label{
+        display:block;
+        font-size:12px;
+        color:var(--muted);
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        margin-bottom:8px;
+      }
+
+      .value{
+        font-size:20px;
+        font-weight:600;
+      }
+
+      /* アニメーション */
+      @keyframes typing{
+        from{width:0}
+        to{width:100%}
+      }
+
+      @keyframes blinkCaret{
+        50%{border-color:transparent}
+      }
+
+      .typing{
+        display:inline-block;
+        white-space:nowrap;
+        overflow:hidden;
+        animation:typing 2.4s steps(28,end) 0.4s forwards, blinkCaret 0.7s step-end infinite;
+      }
+
+      .fade-up{
+        opacity:0;
+        transform:translateY(10px);
+        animation:fadeUp 0.8s ease forwards;
+      }
+
+      @keyframes fadeUp{
+        to{opacity:1; transform:none}
+      }
+
+      footer{
+        margin-top:48px;
+        color:var(--muted);
+        font-size:13px;
+      }
+
+      /* レスポンシブ */
+      @media (max-width:820px){
+        main{grid-template-columns:1fr;}
+        .card{padding:40px 20px;}
+        .cardbox{border-left:none; padding-left:0; padding-top:24px;}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" role="main">
+      <header>
+        <h1 class="name"><span id="name" class="typing" aria-label="﨑村壱花">​</span></h1>
+        <p class="role">自己紹介 — シンプルで余白の多いページ</p>
+      </header>
+
+      <main>
+        <section class="bio fade-up" style="animation-delay:0.6s">
+          <p style="margin-top:0;">はじめまして。私は<span class="emphasis">﨑村壱花</span>です。ここでは私の特技やチーム開発に対する意気込みをシンプルにまとめています。</p>
+
+          <p class="bio" style="margin-top:24px">デザインはモノクロで余白を多く取り、読みやすさを重視しました。動きは控えめにして、必要な部分だけアクセントを付けています。</p>
+        </section>
+
+        <aside class="cardbox fade-up" style="animation-delay:0.9s">
+          <div class="item">
+            <span class="label">氏名</span>
+            <div class="value">﨑村壱花</div>
+          </div>
+
+          <div class="item">
+            <span class="label">特技</span>
+            <div class="value">ゲームすること</div>
+          </div>
+
+          <div class="item">
+            <span class="label">チーム開発への意気込み</span>
+            <div class="value">積極的にチーム開発に取り組む</div>
+          </div>
+
+          <div class="item">
+            <span class="label">連絡</span>
+            <div class="value" style="font-weight:400; font-size:14px; color:var(--muted)">ここに連絡先を追加できます</div>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        <div>このページはシンプル・モノクロを意識した自己紹介ページです。</div>
+      </footer>
+    </div>
+
+    <script>
+      // 名前を文字単位で表示する簡易タイピング（アクセシブルに既存テキストを保持）
+      (function(){
+        const name = '﨑村壱花';
+        const el = document.getElementById('name');
+        // 空白で始まらないように一旦無視
+        el.textContent = '';
+        let i = 0;
+        const speed = 120; // ms per char
+
+        function step(){
+          if(i <= name.length){
+            el.textContent = name.slice(0,i);
+            i++;
+            setTimeout(step, speed);
+          } else {
+            // 最後に点滅カーソルを消す
+            el.style.borderRight = 'none';
+          }
+        }
+
+        // フォールバックで、JSが無効な場合に備えてaria-liveを使う
+        el.setAttribute('aria-live','polite');
+        window.requestAnimationFrame(()=>setTimeout(step, 300));
+      })();
+
+      // 視覚アニメーション制御（reduced motion対応）
+      (function(){
+        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if(mq.matches){
+          document.querySelectorAll('.fade-up').forEach(el=>{
+            el.style.animation = 'none';
+            el.style.opacity = 1;
+            el.style.transform = 'none';
+          });
+          const nameEl = document.getElementById('name');
+          if(nameEl){ nameEl.style.animation = 'none'; nameEl.style.borderRight='none'; nameEl.textContent = '﨑村壱花'; }
+        }
+      })();
+    </script>
+  </body>
+</html>
