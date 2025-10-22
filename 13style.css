@@ -1,0 +1,36 @@
+/* 13style.css - シックでかっこいいライブ風トップ */
+:root{
+  --bg:#050505;
+  --muted:#9b9b9b;
+  --accent:#0af;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, 'Helvetica Neue', Arial, sans-serif;background:radial-gradient(circle at 50% 20%, #0b0b0b 0%, #030303 40%, #000 100%);color:#fff}
+.stage{min-height:100vh;display:flex;flex-direction:column}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 36px;color:var(--muted);}
+.nav .logo{color:#fff;text-decoration:none;font-weight:700;letter-spacing:1px}
+.nav nav a{color:var(--muted);text-decoration:none;margin-left:14px}
+
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px}
+.headline{font-size:clamp(28px,7vw,64px);margin:0 0 10px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.sub{margin:0 0 28px;color:var(--muted);font-size:1.05rem}
+
+.controls{display:flex;align-items:center;gap:18px}
+
+.penlight{position:relative;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:40px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);color:#fff;cursor:pointer;overflow:visible}
+.penlight .label{font-weight:700;letter-spacing:0.6px}
+.penlight .glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:0;height:0;border-radius:50%;filter:blur(24px);opacity:0;pointer-events:none}
+.penlight.on .glow{width:280px;height:280px;opacity:0.22}
+
+.color-palette{display:flex;gap:10px}
+.color{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.06);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.6)}
+
+/* subtle stage lights */
+.stage::before,.stage::after{content:"";position:fixed;left:20%;top:10%;width:420px;height:420px;border-radius:50%;filter:blur(120px);opacity:0.06;pointer-events:none}
+.stage::before{background:linear-gradient(45deg,#0a84ff55,#34c75955)}
+.stage::after{left:auto;right:12%;top:20%;background:linear-gradient(45deg,#ff2d5555,#af52de55)}
+
+.credits{padding:18px;text-align:center;color:var(--muted);font-size:0.9rem}
+
+/* small responsive tweaks */
+@media (max-width:520px){.nav{padding:12px 18px}.penlight{padding:10px 14px}.color{width:28px;height:28px}}
