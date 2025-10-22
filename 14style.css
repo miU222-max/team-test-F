@@ -1,0 +1,60 @@
+/* Splatoon-ish colorful style for 14top.html */
+:root{
+  --bg:#0b1020;
+  --accent1:#00d4a6; /* neon green */
+  --accent2:#ff2aa3; /* pink */
+  --accent3:#2ab6ff; /* cyan */
+  --paper:#0f1724;
+  --glass: rgba(255,255,255,0.06);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:"Noto Sans JP", "Helvetica Neue", Arial, sans-serif;background:linear-gradient(180deg,var(--bg),#07101a);color:#fff}
+.site-header{position:relative;overflow:hidden;padding:28px 16px}
+.site-header .inner{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+.logo{font-weight:800;font-size:28px;letter-spacing:1px;color:var(--accent2);text-shadow:0 6px 12px rgba(0,0,0,0.6)}
+nav a{color:#fff;margin-left:14px;text-decoration:none;padding:8px 12px;border-radius:8px;transition:transform .18s ease,background .18s}
+nav a:hover{transform:translateY(-3px);background:var(--glass)}
+.ink-bg{position:absolute;inset:0;background:radial-gradient(circle at 15% 30%, rgba(255,42,163,0.12) 0 12%, transparent 30%),radial-gradient(circle at 80% 50%, rgba(42,182,255,0.12) 0 12%, transparent 30%)}
+
+main{max-width:1100px;margin:40px auto;padding:0 16px}
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));padding:48px;border-radius:18px;margin-bottom:28px;position:relative;overflow:hidden}
+.panel h3{margin-top:0;color:var(--accent1)}
+.hero-content{padding:40px 20px}
+.hero-content h2{font-size:42px;margin:0 0 8px;color:var(--accent3);text-shadow:0 8px 24px rgba(0,0,0,0.6)}
+.btn{display:inline-block;margin-top:14px;background:linear-gradient(90deg,var(--accent2),var(--accent3));padding:12px 18px;border-radius:999px;color:#051020;font-weight:700;text-decoration:none}
+
+.cards{display:flex;gap:18px;margin-top:18px}
+.card{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;flex:1;text-align:center}
+.card img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,0.5))}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.photo img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+
+footer{max-width:1100px;margin:18px auto 60px;padding:12px 16px;color:#a6b0bf}
+
+/* reveal animation (下からふわっ) */
+.reveal{opacity:0;transform:translateY(28px) scale(0.99);transition:opacity .7s cubic-bezier(.2,.9,.26,1),transform .7s cubic-bezier(.2,.9,.26,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* splat images */
+.splat{position:absolute;pointer-events:none;mix-blend-mode:screen;opacity:0.9}
+.splat-hero{right:-40px;bottom:-30px;width:260px;transform:rotate(-14deg)}
+
+/* splat click layer */
+#splat-layer{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:9999}
+.splat-anim{position:absolute;border-radius:50%;transform:translate(-50%,-50%) scale(0.2);opacity:0.95;mix-blend-mode:multiply}
+.splat-anim.ink1{background:radial-gradient(circle at 30% 30%, #00d4a6 10%, #00a47a 50%, transparent 60%)}
+.splat-anim.ink2{background:radial-gradient(circle at 30% 30%, #ff2aa3 10%, #c31878 50%, transparent 60%)}
+.splat-anim.ink3{background:radial-gradient(circle at 30% 30%, #2ab6ff 10%, #0a85c6 50%, transparent 60%)}
+.splat-anim.expand{animation:ink-splash .6s forwards cubic-bezier(.2,.8,.2,1)}
+@keyframes ink-splash{0%{opacity:1;transform:translate(-50%,-50%) scale(0.2)}60%{opacity:1;transform:translate(-50%,-50%) scale(1.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}}
+
+/* smooth slide transition for anchor-target sections */
+html{scroll-behavior:smooth}
+
+/* small responsive tweaks */
+@media(max-width:640px){
+  .logo{font-size:22px}
+  .hero-content h2{font-size:28px}
+  .cards{flex-direction:column}
+}
